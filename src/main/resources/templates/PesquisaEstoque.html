@@ -1,0 +1,72 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{Layout}">
+<head>
+<title>Pesquisa de Produtos</title>
+
+</head>
+<section layout:fragment="CadProdutos">
+
+	<div layout:insert="MensagemGeral"></div>
+
+
+	<div class="card card-default">
+		<div class="card-header">
+			<div class="crearfix">
+				<h1 class="card-title stretched-titulo">Pesquisa de Produtos</h1>
+
+			</div>
+		</div>
+
+		<div class="card-body">
+
+
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped ">
+					<thead>
+						<tr>
+							<th class="text-center" scope="col">#</th>
+							<th class="text-center" scope="col">Nome</th>
+							<th class="text-center" scope="col">Marca</th>
+							<th class="text-center" scope="col">Data de Validade</th>
+							<th class="text-center" scope="col">Segmento</th>
+							<th class="text-center" scope="col">Valor</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="produto : ${produtos}">
+							<td class="text-center" th:text="${produto.codigo}"></td>
+							<td class="text-center" th:text="${produto.nome}"></td>
+							<td class="text-center" th:text="${produto.marca}"></td>
+							<td class="text-center" th:text="${{produto.dataValidade}}"></td>
+							<td class="text-center" th:text="${{produto.segmento}}"></td>
+							<td class="text-right" th:text="|R$ ${{produto.valor}}|"></td>
+
+
+							<td class="text-center"><a class="btn btn-link btn-xs"
+								th:href="@{/produtos/{codigo}(codigo=${produto.codigo})}"
+								rel="tooltip" data-placement="top" title="Editar"> <img
+									src="/img/pencil-square.svg" height="15">
+							</a> <a class="btn btn-link btn-xs" data-toggle="modal"
+								data-target="#confirmacaoExclusaoModal"
+								th:attr="data-codigo=${produto.codigo}, data-nome=${produto.nome}"
+								rel="tooltip" data-placement="top" title="Excluir"> <img
+									src="/img/trash-fill.svg" height="15">
+							</a></td>
+						<tr>
+							<td scope="row" th:if="${#lists.isEmpty(produtos)}">Nenhum
+								produto foi encontrado!</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div layout:insert="DialogoConfirmacaoExclusao"></div>
+
+
+	</div>
+</section>
+</html>

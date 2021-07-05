@@ -1,0 +1,37 @@
+.container {
+	background-color: #EDF2FB;
+	position: relative;
+	display: block;
+	margin: center;
+	border-radius: 14px;
+	border: 1px solid black;
+}
+
+.editar {
+	font: 16px arial, verdana, helvetica, sans-serif;
+	border: 8px solid #EDF2FB;
+}
+
+.editar input, select {
+	border: 1px solid black;
+}
+
+.card {
+	background-color: #EDF2FB;
+	margin: 10px;
+	border: 1px solid black;
+	font: 16px arial, verdana, helvetica, sans-serif;
+	position: relative;
+	display: block;
+	margin: center;
+	border-radius: 14px;
+}
+
+.alert {
+	margin: 10px;
+}
+
+body {
+	background-color: #84A98C;
+	margin: center;
+}

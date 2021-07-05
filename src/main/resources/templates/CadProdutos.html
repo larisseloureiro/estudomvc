@@ -1,0 +1,100 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{Layout}">
+<head>
+
+<title>Cadastro de Produtos</title>
+
+</head>
+
+<section layout:fragment="CadProdutos">
+	<form class="form-horizontal" method="POST" action="/produtos"
+		th:object="${produto}">
+
+		<div layout:insert="MensagemGeral"></div>
+		<div layout:insert="MensagemErro"></div>
+
+		<div class="card-body">
+			<input type="hidden" th:field=" *{codigo}" />
+			<div class="container col-8">
+				<div class="row mb-3">
+					<div class="card-header text-center col-12">
+						<b>Novo Produto</b>
+					</div>
+
+				</div>
+
+				<div class="editar">
+					<div class="row mb-3">
+						<label for="nome" class="col-sm-2 col-form-label">Nome</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="nome"
+								th:field="*{nome}"
+								th:classappend="${#fields.hasErrors('nome')} ? 'form-control is-invalid'">
+						</div>
+					</div>
+
+
+					<div class="row mb-3">
+						<label for="marca" class="col-sm-2 col-form-label">Marca</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="marca"
+								th:field="*{marca}"
+								th:classappend="${#fields.hasErrors('marca')} ? 'form-control is-invalid'">
+						</div>
+					</div>
+
+
+					<div class="row mb-3">
+						<label for="dataValidade" class="col-sm-2 col-form-label">Data
+							de Validade</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="dataValidade"
+								data-provide="datepicker" data-date-format="dd/mm/yyyy"
+								data-date-language="pt-BR" data-date-autoclose="true"
+								data-date-today-highlight="true" data-date-orientation="auto"
+								th:field="*{dataValidade}"
+								th:classappend="${#fields.hasErrors('dataValidade')} ? 'form-control is-invalid'" />
+						</div>
+					</div>
+
+
+					<div class="row mb-3">
+						<label for="segmento" class="col-sm-2 col-form-label">Segmento</label>
+						<div class="col-sm-2">
+							<select class="form-control" name="segmento">
+								<option th:each="segmento : ${todosSegmentos}"
+									th:value="${segmento}" th:text="${segmento.nome}"></option>
+
+							</select>
+						</div>
+					</div>
+
+
+					<div class="row mb-3">
+						<label for="valor" class="col-sm-2 col-form-label">Valor</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control js-currency" id="valor"
+								th:field="*{valor}"
+								th:classappend="${#fields.hasErrors('valor')} ? 'form-control is-invalid'" />
+						</div>
+					</div>
+
+
+
+					<div class="row mb-3">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+
+</html>
+
+
